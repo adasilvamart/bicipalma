@@ -1,14 +1,14 @@
 package edu.badpals.bicipalma.domain.estacion;
+
 import edu.badpals.bicipalma.domain.bici.Bicicleta;
 import edu.badpals.bicipalma.domain.tarjetausuario.TarjetaUsuario;
-
 
 public class Estacion {
 
     private final int id;
     private final String direccion;
     private final Anclajes anclajes;
-
+    
     public Estacion(int id, String direccion, int numAnclajes) {
         this.id = id;
         this.direccion = direccion;
@@ -27,14 +27,13 @@ public class Estacion {
         return this.anclajes.anclajes();
     }
 
-    private int numAnclajes() {
-        return this.anclajes.numAnclajes();
+    public void consultarEstacion() {
+        this.toString();
     }
 
-    public void consultarEstacion() {
-        System.out.println(
-                "Estación de " + getDireccion() + "\nID: " + getId() + "\nNumero de anclajes libres: "
-                        + anclajesLibres());
+    @Override
+    public String toString() {
+        return "id: " + getId() + " \ndireccion: " + getDireccion() + " \nanclajes: " + anclajesLibres();
     }
 
     public int anclajesLibres() {
@@ -97,12 +96,7 @@ public class Estacion {
         int numeroAnclaje = posicion + 1;
 
         for (Anclaje anclaje : anclajes()) {
-
-            if (!anclaje.isOcupado()) {
-                System.out.println("Anclaje " + numeroAnclaje + ": libre");
-            } else {
-                System.out.println("Anclaje " + numeroAnclaje + ": " + anclaje.getBici());
-            }
+            System.out.println("Anclaje " + numeroAnclaje + ": " + (anclaje.isOcupado() ? anclaje.getBici() : "libre"));
             numeroAnclaje++;
         }
     }

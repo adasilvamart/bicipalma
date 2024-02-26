@@ -6,8 +6,8 @@ public class Anclaje {
     private boolean ocupado = false;
     private Bicicleta bici = null;
 
-    // Modificar constructor a privado, preguntar porqué vacío
-    Anclaje() {}
+    Anclaje() {
+    }
 
     boolean isOcupado() {
         return this.ocupado;
@@ -17,7 +17,7 @@ public class Anclaje {
         return this.bici;
     }
 
-    void anclarBici(Bicicleta bici){
+    void anclarBici(Bicicleta bici) {
         this.ocupado = true;
         this.bici = bici;
     }
@@ -31,5 +31,4 @@ public class Anclaje {
     public String toString() {
         return isOcupado() ? "Ocupado" : "Libre";
     }
-
 }

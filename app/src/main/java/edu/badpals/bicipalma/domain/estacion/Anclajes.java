@@ -1,9 +1,10 @@
 package edu.badpals.bicipalma.domain.estacion;
+
 import edu.badpals.bicipalma.domain.bici.Bicicleta;
 
 public class Anclajes {
-    
-    Anclaje [] anclajes;
+
+    Anclaje[] anclajes;
 
     Anclajes(int numAnclajes) {
         this.anclajes = new Anclaje[numAnclajes];
@@ -40,14 +41,8 @@ public class Anclajes {
         return anclajes[anclaje].getBici();
     }
 
-    /*seleccionarAnclaje() {
-    *   ; No se como implementar esta función ni para que sirve
-    * }
-    */
-    
     @Override
     public String toString() {
         return "Anclajes: " + Integer.toString(numAnclajes());
     }
-
 }

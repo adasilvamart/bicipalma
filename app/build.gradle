@@ -35,3 +35,13 @@ application {
     // Define the main class for the application.
     mainClass = 'edu.badpals.bicipalma.App'
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class' : 'edu.badpals.bicipalma.App',
+                   'Package-Title' : 'Bicipalma',
+                   'Package-Version': '1.0',
+                   'Package-Vendor' : 'adasilva.clase@gmail.com',
+                   'Specification-Title' : 'Kata Bicipalma'
+    }
+}
