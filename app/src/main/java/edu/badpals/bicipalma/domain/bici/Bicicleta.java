@@ -1,4 +1,4 @@
-package edu.badpals.bicipalma.domain;
+package edu.badpals.bicipalma.domain.bici;
 
 public class Bicicleta {
 
