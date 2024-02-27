@@ -11,14 +11,14 @@ public class AnclajeTest {
 
     @Test
     public void anclarBiciTest() {
-        Anclaje anclaje = new Anclaje();
+        Anclaje anclaje = new Anclaje(1);
         anclaje.anclarBici(new Bicicleta(911));
         assertTrue(anclaje.isOcupado());
     }
 
     @Test
     public void getBiciTest() {
-        Anclaje anclaje = new Anclaje();
+        Anclaje anclaje = new Anclaje(1);
         anclaje.anclarBici(new Bicicleta(911));
         assertTrue(anclaje.isOcupado());
         anclaje.getBici();
@@ -27,7 +27,7 @@ public class AnclajeTest {
 
     @Test
     public void liberarBiciTest() {
-        Anclaje anclaje = new Anclaje();
+        Anclaje anclaje = new Anclaje(1);
         anclaje.anclarBici(new Bicicleta(911));
         assertTrue(anclaje.isOcupado());
 

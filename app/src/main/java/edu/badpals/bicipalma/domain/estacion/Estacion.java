@@ -1,5 +1,8 @@
 package edu.badpals.bicipalma.domain.estacion;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import edu.badpals.bicipalma.domain.bici.Bicicleta;
 import edu.badpals.bicipalma.domain.tarjetausuario.TarjetaUsuario;
 
@@ -8,7 +11,7 @@ public class Estacion {
     private final int id;
     private final String direccion;
     private final Anclajes anclajes;
-    
+
     public Estacion(int id, String direccion, int numAnclajes) {
         this.id = id;
         this.direccion = direccion;
@@ -28,7 +31,7 @@ public class Estacion {
     }
 
     public void consultarEstacion() {
-        this.toString();
+        System.out.println(toString());
     }
 
     @Override
@@ -37,68 +40,35 @@ public class Estacion {
     }
 
     public int anclajesLibres() {
-        int libres = 0;
-        for (Anclaje anclaje : anclajes()) {
-            if (!anclaje.isOcupado()) {
-                libres += 1;
-            }
-        }
-        return libres;
+        List<Anclaje> anclajesStream = Arrays.asList(anclajes());
+        return (int) anclajesStream.stream()
+                .filter(a -> !a.isOcupado())
+                .count();
     }
 
     public void anclarBicicleta(Bicicleta bici) {
-        int posicion = 0;
-        int numeroAnclaje = posicion + 1;
-
-        for (Anclaje anclaje : anclajes()) {
-            if (!anclaje.isOcupado()) {
-                anclajes.ocuparAnclaje(posicion, bici);
-                mostrarAnclaje(bici, numeroAnclaje);
-                break;
-            } else {
-                posicion++;
-            }
-            numeroAnclaje++;
+        Optional<Anclaje> libre = Arrays.stream(anclajes()).filter(a -> !a.isOcupado()).findAny();
+        if (libre.isPresent()) {
+            libre.get().anclarBici(bici);
         }
+
     }
 
     public void retirarBicicleta(TarjetaUsuario tarjeta) {
-        int posicion = 0;
-        int numeroAnclaje = posicion + 1;
-        if (tarjeta.isActivada()) {
-            for (Anclaje anclaje : anclajes()) {
-                if (anclaje.isOcupado()) {
-                    anclajes.liberarAnclaje(posicion);
-                    System.out.println("Bicicleta " + anclaje.getBici() + "retirada del anclaje " + numeroAnclaje);
-                    break;
-                } else {
-                    posicion++;
-                }
-                numeroAnclaje++;
+        if (leerTarjetaUsuario(tarjeta)) {
+            Optional<Anclaje> anclajeOcupado = Arrays.stream(anclajes()).filter(Anclaje::isOcupado).findAny();
+            if (anclajeOcupado.isPresent()) {
+                anclajeOcupado.get().liberarBici();
             }
-        } else {
-            ;
         }
-
     }
 
     public boolean leerTarjetaUsuario(TarjetaUsuario tarjeta) {
         return tarjeta.isActivada();
     }
 
-    private void mostrarAnclaje(Bicicleta bici, int anclaje) {
-        System.out.println("Bicicleta " + bici.getId() + " anclada en anclaje: " + anclaje);
-    }
-
     public void consultarAnclajes() {
-
-        int posicion = 0;
-        int numeroAnclaje = posicion + 1;
-
-        for (Anclaje anclaje : anclajes()) {
-            System.out.println("Anclaje " + numeroAnclaje + ": " + (anclaje.isOcupado() ? anclaje.getBici() : "libre"));
-            numeroAnclaje++;
-        }
+        Arrays.stream(anclajes())
+                .forEach(System.out::println);
     }
-
 }

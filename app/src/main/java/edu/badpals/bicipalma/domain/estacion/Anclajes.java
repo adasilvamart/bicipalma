@@ -4,7 +4,7 @@ import edu.badpals.bicipalma.domain.bici.Bicicleta;
 
 public class Anclajes {
 
-    Anclaje[] anclajes;
+    private Anclaje[] anclajes;
 
     Anclajes(int numAnclajes) {
         this.anclajes = new Anclaje[numAnclajes];
@@ -13,7 +13,7 @@ public class Anclajes {
 
     private void crearAnclajes() {
         for (int i = 0; i < anclajes.length; i++) {
-            this.anclajes[i] = new Anclaje();
+            this.anclajes[i] = new Anclaje(i);
         }
     }
 
