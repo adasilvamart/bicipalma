@@ -1,6 +1,5 @@
 package edu.badpals.bicipalma.domain.estacion;
-
-import edu.badpals.bicipalma.domain.bici.Bicicleta;
+import edu.badpals.bicipalma.domain.bici.Movil;
 
 public class Anclajes {
 
@@ -25,7 +24,7 @@ public class Anclajes {
         return this.anclajes.length;
     }
 
-    void ocuparAnclaje(int anclaje, Bicicleta bici) {
+    void ocuparAnclaje(int anclaje, Movil bici) {
         anclajes[anclaje].anclarBici(bici);
     }
 
@@ -37,7 +36,7 @@ public class Anclajes {
         anclajes[anclaje].liberarBici();
     }
 
-    Bicicleta getBiciAt(int anclaje) {
+    Movil getBiciAt(int anclaje) {
         return anclajes[anclaje].getBici();
     }
 

@@ -1,12 +1,12 @@
 package edu.badpals.bicipalma.domain.estacion;
 
-import edu.badpals.bicipalma.domain.bici.Bicicleta;
+import edu.badpals.bicipalma.domain.bici.Movil;
 
 public class Anclaje {
     
     private final int id;
     private boolean ocupado = false;
-    private Bicicleta bici = null;
+    private Movil bici = null;
 
     Anclaje(int id) {
         this.id = id + 1;
@@ -20,11 +20,11 @@ public class Anclaje {
         return this.ocupado;
     }
 
-    Bicicleta getBici() {
+    Movil getBici() {
         return this.bici;
     }
 
-    void anclarBici(Bicicleta bici) {
+    void anclarBici(Movil bici) {
         this.ocupado = true;
         this.bici = bici;
     }
